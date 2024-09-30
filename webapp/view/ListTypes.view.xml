@@ -1,0 +1,38 @@
+<mvc:View xmlns:controls="sap.viz.ui5.controls" controllerName="logaligroup.applists.controller.ListTypes"
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns:core="sap.ui.core" 
+    xmlns:layout="sap.ui.layout"
+    displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <IconTabBar id="iconBar">
+                <items>
+                    <IconTabFilter id="filterTab1" text="{i18n>objectList}">
+                        <List id="_IDGenList" items="{/Products}">
+                            <ObjectListItem id="_IDGenObjectListItem" title="{Material} {Brand} {Model}"
+                                                                    number="{Price}"
+                                                                    numberUnit="{Currency}"
+                                                                    type="Detail">
+                                <ObjectAttribute id="_IDGenObjectAttribute" text="{Brand}"></ObjectAttribute>
+                                <ObjectAttribute id="_IDGenObjectAttribute1" text="{Weight}"></ObjectAttribute>
+                            </ObjectListItem>
+                        </List>
+                    </IconTabFilter>
+
+                    <IconTabFilter id="filterTab2" text="{i18n>standarList}">
+                    </IconTabFilter>
+
+                    <IconTabFilter id="filterTab3" text="{i18n>inputList}">
+                    </IconTabFilter>
+
+                    <IconTabFilter id="filterTab4" text="{i18n>notificationtList}">
+                    </IconTabFilter>
+
+                    <IconTabFilter id="filterTab5" text="{i18n>customList}">
+                    </IconTabFilter>
+                </items>
+            </IconTabBar>
+        </content>
+    </Page>
+</mvc:View>
