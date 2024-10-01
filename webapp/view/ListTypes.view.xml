@@ -9,7 +9,10 @@
             <IconTabBar id="iconBar">
                 <items>
                     <IconTabFilter id="filterTab1" text="{i18n>objectList}">
-                        <List id="_IDGenList" items="{/Products}">
+                        <List id="_IDGenList" items="{path: '/Products',
+                                                      filters: [{path: 'Brand',
+                                                                 operator: 'EQ',
+                                                                 value1: 'Compaq'}] }">
                             <ObjectListItem id="_IDGenObjectListItem" title="{Material} {Brand} {Model}"
                                                                     number="{Price}"
                                                                     numberUnit="{Currency}"
@@ -21,15 +24,73 @@
                     </IconTabFilter>
 
                     <IconTabFilter id="filterTab2" text="{i18n>standarList}">
+                        <Select id="_IDGenSelect" selectedKey="{/typeSelection}">
+                            <items>
+                                <core:Item id="_IDGenItem1" key="None" text="{i18n>none}"></core:Item>
+                                <core:Item id="_IDGenItem2" key="MultiSelect" text="{i18n>multiselect}"></core:Item>
+                                <core:Item id="_IDGenItem3" key="SingleSelect" text="{i18n>SelectSingle}"></core:Item>
+                                <core:Item id="_IDGenItem4" key="SingleSelectLeft" text="{i18n>SelectSingleLeft}"></core:Item>
+                                <core:Item id="_IDGenItem5" key="SingleSelectMaster" text="{i18n>SingleSelectMaster}"></core:Item>
+                            </items>
+                        </Select> 
+                        <Button id="button1" text="{i18n>ShowSelectedItem}" press="onShowSelecteditem"></Button>
+                        <Button id="button2" text="{i18n>deleteditem}" press="DeletedSelected"></Button>
+                        <List id="_IDGenList1" items="{ path: '/Products',
+                                                        sorter: {path: 'Brand',
+                                                                descending: false,
+                                                                group: true 
+                                                        },
+                                                        groupHeaderFactory: '.getGroupHeader'}"
+                                                mode="{/typeSelection}">
+                                               <!-- mode="SingleSelect"> -->
+                            <items>
+                                <StandardListItem id="standardList" title="{Material} {Brand} {Model}"
+                                                                    description="{Weight}"
+                                                                    info="{Price} {Currency}"
+                                                                    type="Active">
+                                </StandardListItem>
+                            </items>
+                        </List>
                     </IconTabFilter>
 
                     <IconTabFilter id="filterTab3" text="{i18n>inputList}">
+                        <List id="_IDGenList2" items="{/Products}" mode="Delete" delete="onDeleteRow">
+                            <items>
+                                <InputListItem id="inputList" label="{Brand}">
+                                    <Select id="select" items="{Properties}">
+                                        <core:Item id="_IDGenItem" key="{Id}" text="{Text}"></core:Item>
+                                    </Select>
+                                </InputListItem>
+                            </items>
+                        </List>
                     </IconTabFilter>
 
                     <IconTabFilter id="filterTab4" text="{i18n>notificationtList}">
+                        <List id="_IDGenList3" items="{/News}">
+                            <items>
+                                <NotificationListItem id="notificationitem" title="{Title}"
+                                                                            description="{Description}"
+                                                                            authorName="{Author}"
+                                                                            unread="{Unread}"
+                                                                            priority="{Priority}"
+                                                                            showCloseButton="{ShowCloseButton}">
+                                </NotificationListItem>
+                            </items>
+                        </List>
                     </IconTabFilter>
 
                     <IconTabFilter id="filterTab5" text="{i18n>customList}">
+                        <List id="_IDGenList4" items="{/News}">
+                            <items>
+                                <CustomListItem id="_IDGenCustomListItem" >
+                                    <layout:Grid id="layout" defaultSpan="XL3 L3 M6 S12">
+                                        <Text id="text" text="{Title}"></Text>
+                                        <Text id="text1" text="{Author}"></Text>
+                                        <Text id="text2" text="{Description}"></Text>
+                                    </layout:Grid>
+                                </CustomListItem>
+                            </items>
+                        </List>
                     </IconTabFilter>
                 </items>
             </IconTabBar>
